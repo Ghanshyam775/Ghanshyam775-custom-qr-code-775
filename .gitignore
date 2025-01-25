@@ -1,1 +1,1 @@
-serviceAccountKey.json
+echo "serviceAccountKey.json" >> .gitignore
