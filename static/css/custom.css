@@ -1,0 +1,238 @@
+
+/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&display=swap');
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+ /* Animated Gradient Background */
+ background: linear-gradient(120deg, #62161e, #720033, #69007d, #212ba9);
+ background-size: 300% 300%; /* Larger area for smooth animation */
+ animation: gradientShift 8s ease infinite; /* Loop animation */
+ color: #333;
+}
+
+/* Keyframes for Gradient Animation */
+@keyframes gradientShift {
+ 0% {
+     background-position: 0% 50%;
+ }
+ 50% {
+     background-position: 100% 50%;
+ }
+ 100% {
+     background-position: 0% 50%;
+ }
+}
+
+.container-contact100 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.wrap-contact100 {
+    max-width: 900px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 70px 40px;
+}
+
+.contact100-form-title-container {
+    display: flex;
+    align-items: center;
+    /* Vertical centering */
+    justify-content: center;
+    /* Horizontal centering */
+    height: 100%;
+    /* Ensure this matches the height of the box/container */
+}
+
+.contact100-form-title {
+    font-size: 50px;
+    font-weight: bold;
+    color: #1b005d;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    gap: 15px; /* Adds space between the fields */
+}
+
+.wrap-input100 {
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+    width: 48%; /* Ensures the fields are side-by-side */
+}
+
+.label-input100 {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
+
+.input100 {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+
+.input100:focus {
+    outline: none;
+    border-color: #007bff; /* Highlight the border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .wrap-input100 {
+        width: 100%; /* Full width for small screens */
+    }
+}
+
+
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #212ba9;
+    color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-image: linear-gradient(to right, #212ba9, #69007d, #770054, #720033, #62161e);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+
+.btn-danger {
+    background-color: red;
+    color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-danger:hover {
+    background-color: #e63939;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+#dynamic-section {
+    background-color: #f0f4f8;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dynamic-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.custom-label,
+.custom-value {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 10px;
+    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Prevents overflow */
+}
+
+#addField {
+    margin-top: 10px;
+}
+
+.container-contact100-form-btn {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.contact100-form-btn {
+    background-image: linear-gradient(to right, #62161e, #720033, #770054, #69007d, #212ba9);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact100-form-btn:hover {
+    background-image: linear-gradient(to right, #212ba9, #69007d, #770054, #720033, #62161e);
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .wrap-contact100 {
+        padding: 30px 20px;
+    }
+    .contact100-form-title{
+        font-size: 30px;
+    }
+
+    .contact100-form-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .dynamic-field {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #dynamic-section {
+       
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <!-- Apple Font Family -->
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Link to Combined CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="form-section">
+                <h2 class="form-title">Create an Account</h2>
+                <form method="POST" action="{{ url_for('register') }}" autocomplete="off" id="registrationForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" autocomplete="off" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" autocomplete="off" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="Password" autocomplete="new-password" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="re_pass" placeholder="Confirm Password" autocomplete="new-password" required />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="contact100-form-btn">Register</button>
+                    </div>
+                </form>
+                <p class="cta-link">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+            </div>
+            <div class="image-section">
+                <img src="{{ url_for('static', filename='images/signup-image.jpg') }}" alt="Sign Up" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show SweetAlert messages based on the response from the server
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData(this);
+            fetch('{{ url_for("register") }}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        Swal.fire({
+                            icon: data.status,
+                            title: data.title,
+                            text: data.message,
+                            confirmButtonText: 'OK',
+                            customClass: {
+                                confirmButton: 'swal-button-confirm'
+                            }
+                        });
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    Swal.fire({
+                        icon: data.status,
+                        title: data.title,
+                        text: data.message,
+                        confirmButtonText: 'OK',
+                        customClass: {
+                            confirmButton: 'swal-button-confirm'
+                        }
+                    }).then(() => {
+                        window.location.href = '/'; // Redirect to login page
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An unexpected error occurred. Please try again later.',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        confirmButton: 'swal-button-confirm'
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

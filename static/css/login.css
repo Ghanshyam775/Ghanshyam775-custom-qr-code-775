@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&display=swap');
+
+/* Universal Styling */
+body {
+    font-family: 'SF Pro', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure full height on all devices */
+
+    /* Animated Gradient Background */
+    background: linear-gradient(120deg, #62161e, #720033, #69007d, #212ba9);
+    background-size: 300% 300%; /* Larger area for smooth animation */
+    animation: gradientShift 8s ease infinite; /* Loop animation */
+    color: #333;
+}
+
+/* Keyframes for Gradient Animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Container Styling */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 90%;
+    max-width: 900px;
+}
+
+/* Content Styling */
+.content {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap; /* Responsive layout */
+    padding: 40px;
+    gap: 20px;
+}
+
+.form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.image-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.image-section img {
+    max-width: 100%;
+    border-radius: 12px;
+    height: auto;
+    object-fit: cover; /* Ensures proper image scaling */
+}
+
+/* Form Styling */
+h2.form-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #62161e;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Prevents overflow */
+}
+
+.contact100-form-btn {
+    background-image: linear-gradient(to right, #62161e, #720033, #770054, #69007d, #212ba9);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.contact100-form-btn:hover {
+    background-image: linear-gradient(to right, #212ba9, #69007d, #770054, #720033, #62161e);
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Underline Hover Effect for Links */
+.cta-link {
+    font-weight: 600;
+    color: #212ba9;
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+}
+.cta-link a {
+    color: #62161e;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 4px;
+    font-size: 18px;
+    transition: color 0.3s ease; /* Smooth color change */
+}
+
+.cta-link a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #69007d;
+
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: bottom left; /* Animate from left to right */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.cta-link a:hover {
+    color: #212ba9; /* Change text color on hover */
+}
+
+.cta-link a:hover::before {
+    transform: scaleX(1); /* Expand the underline */
+}
+
+       /* Custom styles for SweetAlert confirm button */
+       .swal-button-confirm {
+        background-image: linear-gradient(to right, #62161e, #720033, #770054, #69007d, #212ba9);
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .swal-button-confirm:hover {
+        background-image: linear-gradient(to right, #212ba9, #69007d, #770054, #720033, #62161e);
+        transform: translateY(-3px);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        padding: 20px;
+    }
+
+    .container {
+        flex-direction: column; /* Stacks form and image sections */
+    }
+
+    .content {
+        flex-direction: column; /* Adjusts content layout */
+        padding: 20px;
+    }
+
+    .form-section, .image-section {
+        flex: none;
+        width: 100%; /* Ensures full width for both sections */
+        padding: 10px;
+    }
+
+    h2.form-title {
+        font-size: 28px; /* Adjust font size for smaller screens */
+    }
+
+    .form-group input {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .contact100-form-btn {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+
+    .image-section img {
+        max-width: 80%; /* Scales the image for smaller devices */
+        margin: 0 auto;
+    }
+}

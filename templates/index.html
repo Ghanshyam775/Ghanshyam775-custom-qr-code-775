@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Generate QR Code</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
+    <style>
+        .input-wrapper {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            gap: 15px; /* Adds space between the fields */
+        }
+
+        .wrap-input100 {
+            width: 48%; /* Makes input fields take up 48% of the container width */
+        }
+
+        /* For smaller screens, make each field take full width */
+        @media (max-width: 768px) {
+            .wrap-input100 {
+                width: 100%; /* Full width on smaller screens */
+            }
+        }
+
+        /* Optional: Make the dynamic custom fields also responsive */
+        @media (max-width: 768px) {
+            .dynamic-field {
+                flex-direction: column; /* Stack dynamic fields vertically */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-contact100">
+        <div class="wrap-contact100">
+            <form class="contact100-form validate-form" method="POST" action="{{ url_for('show_qr') }}">
+                <div class="contact100-form-title-container">
+                    <span class="contact100-form-title">QR Code Generator</span>
+                </div>
+
+                <!-- Name and Email Fields -->
+                <div class="input-wrapper">
+                    <div class="wrap-input100">
+                        <span class="label-input100">Name</span>
+                        <input class="input100" type="text" name="name" placeholder="Enter Your Name" required>
+                    </div>
+
+                    <div class="wrap-input100">
+                        <span class="label-input100">Email</span>
+                        <input class="input100" type="email" name="email" placeholder="Enter Your Email" required>
+                    </div>
+                </div>
+
+                <div id="dynamic-section">
+                    <h4 style="font-size: 18px; margin-bottom: 10px; color: #333;">Custom Fields</h4>
+                    <div id="dynamic-form"></div>
+                    <button type="button" id="addField" class="btn btn-primary mt-2">+ Add Custom Field</button>
+                </div>
+
+                <div class="container-contact100-form-btn mt-4">
+                    <button class="contact100-form-btn" type="submit">
+                        <span>Generate QR</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dynamicForm = document.getElementById('dynamic-form');
+            const addFieldButton = document.getElementById('addField');
+
+            // Add new custom field
+            addFieldButton.addEventListener('click', function () {
+                const fieldHTML = `
+                    <div class="dynamic-field d-flex align-items-center mb-2">
+                        <input class="form-control me-2" type="text" name="custom_label[]" placeholder="Enter Label" required>
+                        <input class="form-control me-2" type="text" name="custom_value[]" placeholder="Enter Value" required>
+                        <button type="button" class="btn btn-danger delete-field">Delete</button>
+                    </div>`;
+                dynamicForm.insertAdjacentHTML('beforeend', fieldHTML);
+            });
+
+            // Delete a custom field
+            dynamicForm.addEventListener('click', function (e) {
+                if (e.target.classList.contains('delete-field')) {
+                    e.target.parentElement.remove();
+                }
+            });
+
+            // Form validation
+            document.querySelector('form').addEventListener('submit', function (e) {
+                const labels = document.querySelectorAll('input[name="custom_label[]"]');
+                const values = document.querySelectorAll('input[name="custom_value[]"]');
+                for (let i = 0; i < labels.length; i++) {
+                    if (!labels[i].value.trim() || !values[i].value.trim()) {
+                        e.preventDefault();
+                        alert('Please fill out all custom fields before submitting.');
+                        return;
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
