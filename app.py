@@ -23,7 +23,7 @@ firebaseConfig = {
 }
 
 # Initialize Firebase Admin SDK with service account key
-cred = credentials.Certificate('keys/serviceAccountKey.json')  # Path to your service account key
+cred = credentials.Certificate('serviceAccountKey.json')  # Path to your service account key
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://custom-qr-code-775-default-rtdb.firebaseio.com/'  # Your database URL
 })
