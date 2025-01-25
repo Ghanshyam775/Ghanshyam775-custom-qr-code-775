@@ -1,5 +1,6 @@
 import base64
 import json
+import os
 from io import BytesIO
 from flask import Flask, render_template, request, redirect, jsonify
 import qrcode
@@ -22,8 +23,13 @@ firebaseConfig = {
     "measurementId": "G-K3S3DR9ZN1"
 }
 
-# Initialize Firebase Admin SDK with service account key
-cred = credentials.Certificate('serviceAccountKey.json')  # Path to your service account key
+# Load the service account key from the environment variable
+service_account_info = os.environ.get('FIREBASE_SERVICE_ACCOUNT')
+if service_account_info is None:
+    raise ValueError("The environment variable 'FIREBASE_SERVICE_ACCOUNT' is not set.")
+cred = credentials.Certificate(json.loads(service_account_info))
+
+# Initialize Firebase Admin SDK
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://custom-qr-code-775-default-rtdb.firebaseio.com/'  # Your database URL
 })
@@ -101,7 +107,7 @@ def forgot_password():
         email = request.form['email']
         try:
             auth_client.send_password_reset_email(email)
-            return jsonify({'status': 'success', 'title': 'Success!', 'message': 'Password reset email sent successfully ! Check your inbox.'}), 200
+            return jsonify({'status': 'success', 'title': 'Success!', 'message': 'Password reset email sent successfully! Check your inbox.'}), 200
         except Exception as e:
             error_msg = str(e)
             return jsonify({'status': 'error', 'title': 'Error', 'message': f'Error: {error_msg}'}), 400
